@@ -8,13 +8,20 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
-	"google.golang.org/appengine/user"
 )
 
 // [START greeting_struct]
-type Greeting struct {
-	Author  string
-	Content string
+type Task struct {
+	Division  string
+	SuperGoal string
+	Goal string
+	Target string
+	Tasks []string
+	Parameters []string
+	Quarter []int
+	Responsible string
+	Partners []string
+	Notes []string
 	Date    time.Time
 }
 
@@ -45,73 +52,60 @@ func guestbookKey(c context.Context) *datastore.Key {
 
 // [START func_root]
 func root(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
+	//c := appengine.NewContext(r)
 	// Ancestor queries, as shown here, are strongly consistent with the High
 	// Replication Datastore. Queries that span entity groups are eventually
 	// consistent. If we omitted the .Ancestor from this query there would be
 	// a slight chance that Greeting that had just been written would not
 	// show up in a query.
 	// [START query]
-	q := datastore.NewQuery("Greeting").Ancestor(guestbookKey(c)).Order("-Date").Limit(10)
+	//q := datastore.NewQuery("Greeting").Ancestor(guestbookKey(c)).Order("-Date").Limit(10)
 	// [END query]
 	// [START getall]
-	greetings := make([]Greeting, 0, 10)
-	if _, err := q.GetAll(c, &greetings); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	// [END getall]
+	//greetings := make([]Greeting, 0, 10)
+	// if _, err := q.GetAll(c, &greetings); err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
+	// // [END getall]
 	// if err := guestbookTemplate.Execute(w, greetings); err != nil {
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
-	if err := tpl.ExecuteTemplate(w, "index.gohtml", greetings); err != nil {
+	if err := tpl.ExecuteTemplate(w, "index.gohtml", nil); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 // [END func_root]
 
-var guestbookTemplate = template.Must(template.New("book").Parse(`
-<html>
-  <head>
-    <title>Go Guestbook</title>
-  </head>
-  <body>
-    {{range .}}
-      {{with .Author}}
-        <p><b>{{.}}</b> wrote:</p>
-      {{else}}
-        <p>An anonymous person wrote:</p>
-      {{end}}
-      <pre>{{.Content}}</pre>
-    {{end}}
-    <form action="/sign" method="post">
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Sign Guestbook"></div>
-    </form>
-  </body>
-</html>
-`))
-
 // [START func_sign]
 func sign(w http.ResponseWriter, r *http.Request) {
 	// [START new_context]
 	c := appengine.NewContext(r)
 	// [END new_context]
-	g := Greeting{
-		Content: r.FormValue("content"),
+	t := Task{
+		Division: "ראש המועצה",
+		SuperGoal: "",
+		Goal: "",
+		Target: "",
+		Tasks: []string{"", ""},
+		Parameters: []string{"", ""},
+		Quarter: []int{1,2,3,4},
+		Responsible: "",
+		Partners: []string{"", ""},
+		Notes: []string{"", ""},
 		Date:    time.Now(),
 	}
 	// [START if_user]
-	if u := user.Current(c); u != nil {
-		g.Author = u.String()
-	}
+	// if u := user.Current(c); u != nil {
+	// 	g.Author = u.String()
+	// }
 	// We set the same parent key on every Greeting entity to ensure each Greeting
 	// is in the same entity group. Queries across the single entity group
 	// will be consistent. However, the write rate to a single entity group
 	// should be limited to ~1/second.
-	key := datastore.NewIncompleteKey(c, "Greeting", guestbookKey(c))
-	_, err := datastore.Put(c, key, &g)
+	key := datastore.NewIncompleteKey(c, "Task", guestbookKey(c))
+	_, err := datastore.Put(c, key, &t)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
