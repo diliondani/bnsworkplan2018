@@ -1,0 +1,23 @@
+runtime: go
+api_version: go1
+
+handlers:
+- url: /assets
+  static_dir: assets
+
+- url: /bns-outlook-addin-manifest.xml
+  static_files: bns-outlook-addin-manifest.xml
+  upload: bns-outlook-addin-manifest.xml
+  
+- url: /.*
+  script: _go_app
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^(.*/)?.*\.json$
+- node_modules/
+- resources/
