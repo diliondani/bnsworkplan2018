@@ -19,25 +19,54 @@
 
     <!-- CDN -->
     <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.rtl.min.css" />
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.rtl.min.css" />
-
+    
     <!-- Template styles -->
     <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/navigation.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="assets/js/navigation.js"></script>
-    <script type="text/javascript" src="assets/js/ContextualMenu.js"></script>
     <!-- Resource file for localized strings:                                                          -->
     <script type="text/javascript" src="assets/js/UIStrings.js" ></script>
 </head>
 
-<body class="ms-font-m ms-welcome">
+<body class="ms-Fabric ms-font-m ms-welcome">
     <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
         <img width="120" height="51" src="assets/img/BnsLogo.png" alt="BNS regional council logo" title="BNS regional council logo" />
         <h1 class="ms-fontSize-xl ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
     </header>
    {{template "main-navigaton"}}
+   <button class="ms-Button" id="openDialog">
+        <span class="ms-Button-label">Create Account</span> 
+    </button>
+    <div class="ms-Dialog">
+        <div class="ms-Dialog-title">All emails together</div>
+            <div class="ms-Dialog-content">
+                <p class="ms-Dialog-subText">Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.</p>
+                <div class="ms-CheckBox">
+                    <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+                    <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
+                    <span class="ms-Label">Option1</span> 
+                    </label>
+                </div>
+                <div class="ms-CheckBox">
+                    <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
+                    <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
+                    <span class="ms-Label">Option2</span> 
+                    </label>
+                </div>
+            </div>
+            <div class="ms-Dialog ms-Dialog--close ms-Dialog--multiline">
+                <button class="ms-Button ms-Dialog-action ms-Button--primary">
+                    <span class="ms-Button-label">Save</span> 
+                </button>
+                <button class="ms-Button ms-Dialog-action">
+                    <span class="ms-Button-label">Cancel</span> 
+                </button>
+            </div>
+        </div>
+    </div>
 
 
     <script type="text/javascript" src="assets/js/core.js"></script>
