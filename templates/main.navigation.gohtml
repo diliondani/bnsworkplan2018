@@ -1,0 +1,49 @@
+{{define "main-navigaton"}}
+<main class="ms-navigation__main">
+        <div class="ms-navigation__header">
+            <button class="ms-Button ms-Button--command" id="myButton">
+                <span class="ms-Button-icon"><i class="ms-CommandBarItem-icon ms-Icon ms-Icon--menu"></i></span>
+            </button>
+            <ul class="ms-ContextualMenu" id="myDropdown">
+                <li class="ms-ContextualMenu-item"><a class="ms-ContextualMenu-link" href="#">Page 1</a></li>
+                <li class="ms-ContextualMenu-item">
+                    <a class="ms-ContextualMenu-link ms-ContextualMenu-link--hasMenu" href="#">Page 2</a> <i class="ms-ContextualMenu-subMenuIcon ms-Icon ms-Icon--chevronDown"></i>
+                    <ul class="ms-ContextualMenu">
+                        <li class="ms-ContextualMenu-item">
+                            <a class="ms-ContextualMenu-link" href="#">Page 2.1</a>
+                        </li>
+                        <li class="ms-ContextualMenu-item">
+                            <a class="ms-ContextualMenu-link" href="#">Page 2.2</a>
+                        </li>
+                        <li class="ms-ContextualMenu-item">
+                            <a class="ms-ContextualMenu-link is-selected" href="#">Page 2.3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="ms-ContextualMenu-item"><a class="ms-ContextualMenu-link" href="#">Page 3</a></li>
+                <li class="ms-ContextualMenu-item">
+                    <a class="ms-ContextualMenu-link ms-ContextualMenu-link--hasMenu" href="#">Page 4</a> <i class="ms-ContextualMenu-subMenuIcon ms-Icon ms-Icon--chevronDown"></i>
+                    <ul class="ms-ContextualMenu">
+                        <li class="ms-ContextualMenu-item">
+                            <a class="ms-ContextualMenu-link" href="#">Page 4.1</a>
+                        </li>
+                        <li class="ms-ContextualMenu-item">
+                            <a class="ms-ContextualMenu-link" href="#">Page 4.2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="ms-ContextualMenu-item ">
+                    <a class="ms-ContextualMenu-link" href="#">
+                        <span class="ms-Icon ms-Icon--gear"></span> Settings
+                    </a>
+                </li>
+                <li class="ms-ContextualMenu-item ">
+                    <a class="ms-ContextualMenu-link" href="#">
+                        <span class="ms-Icon ms-Icon--sites"></span> Sign-out
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {{template "section-welcome"}}
+    </main>
+    {{end}}

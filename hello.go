@@ -2,8 +2,12 @@ package guestbook
 
 import (
 	"html/template"
+	"io"
 	"net/http"
-	"time"
+	"strconv"
+
+	"github.com/360EntSecGroup-Skylar/excelize"
+	"google.golang.org/appengine/log"
 
 	"golang.org/x/net/context"
 	"google.golang.org/appengine"
@@ -12,17 +16,22 @@ import (
 
 // [START greeting_struct]
 type Task struct {
-	Division  string
-	SuperGoal string
-	Goal string
-	Target string
-	Tasks []string
-	Parameters []string
-	Quarter []int
+	Number      int
+	Division    string
+	Department  string
+	Type        string
+	SuperGoal   string
+	Goal        string
+	Target      string
+	Mission     string
+	Parameter   string
+	Q1          bool
+	Q2          bool
+	Q3          bool
+	Q4          bool
 	Responsible string
-	Partners []string
-	Notes []string
-	Date    time.Time
+	Partners    string
+	Notes       string
 }
 
 var tpl *template.Template
@@ -34,20 +43,65 @@ func init() {
 	http.HandleFunc("/", root)
 	//http.HandleFunc("/bns-office-outlook-manifest.xml", manifest)
 	http.HandleFunc("/sign", sign)
+	http.HandleFunc("/read", read)
 	// http.HandleFunc("/favicon.ico", favicon)
 	// http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("./assets"))))
 }
-func favicon(w http.ResponseWriter, r *http.Request)  {
-	http.ServeFile(w,r,"assets/icons/favicon.ico")
+
+func read(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	xlsx, err := excelize.OpenFile("bnsworkplan.xlsx")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	t := Task{
+		Division:   "ראש המועצה",
+		Department: "ראש המועצה",
+	}
+	// Get value from cell by given worksheet name and axis.
+	//cell := xlsx.GetCellValue("Mayor", "B2")
+	//log.Debugf(c, "This is cell content %v", cell)
+	//io.WriteString(w, cell)
+	// Get all the rows in the Sheet1.
+	rows := xlsx.GetRows("Mayor")
+
+	for i, row := range rows {
+		log.Debugf(c, "Row: %v", i)
+		t.Number = i
+		t.SuperGoal = row[0]
+		t.Goal = row[1]
+		t.Target = row[2]
+		t.Mission = row[3]
+		t.Parameter = row[4]
+		//t.Quarter = row[5]
+		t.Q1, _ = strconv.ParseBool(row[6])
+		t.Q2, _ = strconv.ParseBool(row[7])
+		t.Q3, _ = strconv.ParseBool(row[8])
+		t.Q4, _ = strconv.ParseBool(row[9])
+		t.Responsible = row[10]
+		t.Partners = row[11]
+		t.Notes = row[12]
+		t.Type = row[13]
+
+		key := datastore.NewIncompleteKey(c, "Task", guestbookKey(c))
+		_, err := datastore.Put(c, key, &t)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		io.WriteString(w, "Succes")
+	}
+
 }
-func manifest(w http.ResponseWriter, r *http.Request){
-	http.ServeFile(w,r, "bns-office-outlook-manifest.xml")
-}
+
+// TODO: add a task to outlook tasks
 
 // guestbookKey returns the key used for all guestbook entries.
 func guestbookKey(c context.Context) *datastore.Key {
 	// The string "default_guestbook" here could be varied to have multiple guestbooks.
-	return datastore.NewKey(c, "Guestbook", "default_guestbook", 0, nil)
+	return datastore.NewKey(c, "WorkPlan", "mayor_workplan", 0, nil)
 }
 
 // [START func_root]
@@ -84,17 +138,18 @@ func sign(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	// [END new_context]
 	t := Task{
-		Division: "ראש המועצה",
-		SuperGoal: "",
-		Goal: "",
-		Target: "",
-		Tasks: []string{"", ""},
-		Parameters: []string{"", ""},
-		Quarter: []int{1,2,3,4},
+		Number:     1,
+		Division:   "ראש המועצה",
+		Department: "",
+		SuperGoal:  "",
+		Goal:       "",
+		Target:     "",
+		Mission:    "",
+		Parameter:  "",
+		//Quarter:     []int8{1, 2, 3, 4},
 		Responsible: "",
-		Partners: []string{"", ""},
-		Notes: []string{"", ""},
-		Date:    time.Now(),
+		Partners:    "",
+		Notes:       "",
 	}
 	// [START if_user]
 	// if u := user.Current(c); u != nil {

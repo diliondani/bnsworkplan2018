@@ -9,6 +9,10 @@ handlers:
   static_files: bns-outlook-addin-manifest.xml
   upload: bns-outlook-addin-manifest.xml
   
+- url: /favicon.ico
+  static_files: assets/icons/favicon.ico
+  upload: assets/icons/favicon.ico
+
 - url: /.*
   script: _go_app
 
