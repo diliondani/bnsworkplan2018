@@ -44,8 +44,14 @@ func init() {
 	//http.HandleFunc("/bns-office-outlook-manifest.xml", manifest)
 	http.HandleFunc("/sign", sign)
 	http.HandleFunc("/read", read)
+	http.HandleFunc("/dialog", dialog)
 	// http.HandleFunc("/favicon.ico", favicon)
 	// http.Handle("/assets/", http.StripPrefix("/assets", http.FileServer(http.Dir("./assets"))))
+}
+func dialog(w http.ResponseWriter, r *http.Request) {
+	if err := tpl.ExecuteTemplate(w, "dialog.gohtml", nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func read(w http.ResponseWriter, r *http.Request) {

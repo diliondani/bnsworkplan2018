@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Office Add-in</title>
 
+    <!-- data-main attribute tells require.js to load
+             scripts/main.js after require.js loads. -->
+        <script data-main="assets/js/app" src="assets/js/require.js"></script>
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.debug.js"></script>
 
@@ -20,13 +23,13 @@
     <!-- CDN -->
     <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
-    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.rtl.min.css" />
-    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.rtl.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.rtl.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.rtl.min.css" />
     
     <!-- Template styles -->
     <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
 
-    <!-- Resource file for localized strings:                                                          -->
+    <!-- Resource file for localized strings: -->
     <script type="text/javascript" src="assets/js/UIStrings.js" ></script>
 </head>
 
@@ -96,9 +99,11 @@
     </div>
 
 
-    <script type="text/javascript" src="assets/js/core.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.js"></script>
-    <script type="text/javascript" src="assets/js/fabric.js"></script>
+    <script type="text/javascript" src="assets/js/core.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"
+                                            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                                            crossorigin="anonymous"></script>
+    <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
     <script type="text/javascript">
         var DialogElements = document.querySelectorAll(".ms-Dialog");
         var DialogComponents = [];
