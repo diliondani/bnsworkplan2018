@@ -25,7 +25,6 @@
     
     <!-- Template styles -->
     <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/navigation.css" rel="stylesheet" type="text/css" />
 
     <!-- Resource file for localized strings:                                                          -->
     <script type="text/javascript" src="assets/js/UIStrings.js" ></script>
@@ -36,10 +35,38 @@
         <img width="120" height="51" src="assets/img/BnsLogo.png" alt="BNS regional council logo" title="BNS regional council logo" />
         <h1 class="ms-fontSize-xl ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
     </header>
-   {{template "main-navigaton"}}
-   <button class="ms-Button" id="openDialog">
-        <span class="ms-Button-label">Create Account</span> 
-    </button>
+   <!-- {{template "main-navigaton"}} */ -->
+   
+   <main class="ms-welcome__main">
+        <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what My Office Add-in can do for you today! </h2>
+        <ul class="ms-List ms-welcome__features ms-u-slideUpIn10">
+            <li class="ms-ListItem">
+                <i class="ms-Icon ms-Icon--Ribbon"></i>
+                <span class="ms-font-m ms-fontColor-neutralPrimary">Achieve more with Office integration</span>
+            </li>
+            <li class="ms-ListItem">
+                <i class="ms-Icon ms-Icon--Unlock"></i>
+                <span class="ms-font-m ms-fontColor-neutralPrimary">Unlock features and functionality</span>
+            </li>
+            <li class="ms-ListItem">
+                <i class="ms-Icon ms-Icon--Design"></i>
+                <span class="ms-font-m ms-fontColor-neutralPrimary">Create and visualize like a pro</span>
+            </li>
+        </ul>
+        <br />
+        <br />
+        <p class="ms-font-l">Modify the source files, then click <b>Run</b>.</p>
+        <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+            <span class="ms-Button-label">Run</span>
+            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
+        </button>
+        <button class="ms-Button ms-Button--primary" id="action-button">
+            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+            <span class="ms-Button-label" id="button-text"></span>
+            <span class="ms-Button-description" id="button-desc"></span>
+        </button>
+    </main>
+        
     <div class="ms-Dialog">
         <div class="ms-Dialog-title">All emails together</div>
             <div class="ms-Dialog-content">
@@ -72,6 +99,15 @@
     <script type="text/javascript" src="assets/js/core.js"></script>
     <script type="text/javascript" src="assets/js/jquery.js"></script>
     <script type="text/javascript" src="assets/js/fabric.js"></script>
+    <script type="text/javascript">
+        var DialogElements = document.querySelectorAll(".ms-Dialog");
+        var DialogComponents = [];
+        for (var i = 0; i < DialogElements.length; i++) {
+            (function() {
+            DialogComponents[i] = new fabric['Dialog'](DialogElements[i]);
+            }());
+        }
+</script>
     <!-- Resource file for localized strings:                                                          -->
     <!--<script type="text/javascript" src="../UIStrings.js" ></script> -->
 

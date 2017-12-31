@@ -3,7 +3,6 @@
  * See LICENSE in the project root for license information.
  */
 /// <reference path="UIStrings.js" />
-/// <reference path="fabric.js" />
 
 'use strict';
 
@@ -28,6 +27,11 @@
       // to get the JSON object with the correct localized strings.
       UIText = UIStrings.getLocaleStrings(myLanguage);
 
+      // // Initialize the FabricUI notification mechanism and hide it
+      // var element = document.querySelector('.ms-MessageBanner');
+      // messageBanner = new app.notification.MessageBanner(element);
+      // messageBanner.hideBanner();
+
       // Set localized text for UI elements.
       $("h1").text(userName + " " + UIText.Greeting);
       $("#about").text(UIText.Introduction);
@@ -35,24 +39,21 @@
       // Initialize fabric components
       //$('.ms-ContextualMenu').ContextualMenu();
 
+      $('#button-text').text("Open Dialog");
+      $('#button-desc').text("Open Dialog that shows the workplan");
+      $('#action-button').click(openDialogAsIframe)
 
-      $('#myButton').click(function () {
-        document.getElementById("myDropdown").classList.toggle("is-open");
-      });
-
-      var DialogComponents = [];
-      var DialogElements = $('.ms-Dialog');
-      for (var i = 0; i < DialogElements.length; i++) {
-        (function() {
-          DialogComponents[i] = new fabric['Dialog'](DialogElements[i]);
-        }());
-      }
-      $('#openDialog').click(function (event){
-        $('.ms-Dialog').open()
-      })
       $('#run').click(run);
     });
   };
+
+  // var dialog;
+  // // Display notifications in message banner at the top of the task pane.
+  // function showNotification(content) {
+  //   $("#notificationBody").text(content);
+  //   messageBanner.showBanner();
+  //   messageBanner.toggleExpansion();
+  // }
 
   function run() {
 
@@ -63,53 +64,44 @@
 
   }
 
-  function ContextualMenu() {
-    console.log("ContextualMenu was called")
+  // function dialogCallback(asyncResult) {
+  //   if (asyncResult.status == "failed") {
 
-    /** Go through each contextual menu we've been given. */
-    return this.each(function () {
+  //     // In addition to general system errors, there are 3 specific errors for 
+  //     // displayDialogAsync that you can handle individually.
+  //     switch (asyncResult.error.code) {
+  //       case 12004:
+  //         showNotification("Domain is not trusted");
+  //         break;
+  //       case 12005:
+  //         showNotification("HTTPS is required");
+  //         break;
+  //       case 12007:
+  //         showNotification("A dialog is already opened.");
+  //         break;
+  //       default:
+  //         showNotification(asyncResult.error.message);
+  //         break;
+  //     }
+  //   } else {
+  //     dialog = asyncResult.value;
+  //     /*Messages are sent by developers programatically from the dialog using office.context.ui.messageParent(...)*/
+  //     dialog.addEventHandler(Office.EventType.DialogMessageReceived, messageHandler);
 
-      var $contextualMenu = $(this);
+  //     /*Events are sent by the platform in response to user actions or errors. For example, the dialog is closed via the 'x' button*/
+  //     dialog.addEventHandler(Office.EventType.DialogEventReceived, eventHandler);
+  //   }
+  // }
 
-      // Set selected states.
-      $contextualMenu.on('click', '.ms-ContextualMenu-link:not(.is-disabled)', function (event) {
-        event.preventDefault();
+  function openDialogAsIframe() {
+    //IMPORTANT: IFrame mode only works in Online (Web) clients. Desktop clients (Windows, IOS, Mac) always display as a pop-up inside of Office apps. 
 
-        // Check if multiselect - set selected states
-        if ($contextualMenu.hasClass('ms-ContextualMenu--multiselect')) {
+    Office.context.ui.displayDialogAsync("https://bnsworkplan.win/assets/html/Dialog.html", {
+      height: 50,
+      width: 50,
+      displayInIframe: true
+    }, null);
+  }
 
-          // If already selected, remove selection; if not, add selection
-          if ($(this).hasClass('is-selected')) {
-            $(this).removeClass('is-selected');
-          } else {
-            $(this).addClass('is-selected');
-          }
-
-        }
-        // All other contextual menu variants
-        else {
-
-          // Deselect all of the items and close any menus.
-          $('.ms-ContextualMenu-link')
-            .removeClass('is-selected')
-            .siblings('.ms-ContextualMenu')
-            .removeClass('is-open');
-
-          // Select this item.
-          $(this).addClass('is-selected');
-
-          // If this item has a menu, open it.
-          if ($(this).hasClass('ms-ContextualMenu-link--hasMenu')) {
-            $(this).siblings('.ms-ContextualMenu:first').addClass('is-open');
-
-            // Open the menu without bubbling up the click event,
-            // which can cause the menu to close.
-            event.stopPropagation();
-          }
-
-        }
-      });
-    });
-  };
 
 })();
