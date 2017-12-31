@@ -10,9 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Office Add-in</title>
 
-    <!-- data-main attribute tells require.js to load
-             scripts/main.js after require.js loads. -->
-        <script data-main="assets/js/app" src="assets/js/require.js"></script>
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.debug.js"></script>
 
@@ -23,24 +20,27 @@
     <!-- CDN -->
     <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.3.0/css/fabric.min.css">
-    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.rtl.min.css" />
-    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.rtl.min.css" />
-    
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.rtl.min.css"
+    />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.rtl.min.css"
+    />
+
     <!-- Template styles -->
     <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
 
     <!-- Resource file for localized strings: -->
-    <script type="text/javascript" src="assets/js/UIStrings.js" ></script>
+    <script type="text/javascript" src="assets/js/UIStrings.js"></script>
 </head>
 
 <body class="ms-Fabric ms-font-m ms-welcome">
     <header class="ms-welcome__header ms-bgColor-neutralLighter ms-u-fadeIn500">
-        <img width="120" height="51" src="assets/img/BnsLogo.png" alt="BNS regional council logo" title="BNS regional council logo" />
+        <img width="120" height="51" src="assets/img/BnsLogo.png" alt="BNS regional council logo" title="BNS regional council logo"
+        />
         <h1 class="ms-fontSize-xl ms-fontWeight-light ms-fontColor-neutralPrimary">Welcome</h1>
     </header>
-   <!-- {{template "main-navigaton"}} */ -->
-   
-   <main class="ms-welcome__main">
+    <!-- {{template "main-navigaton"}} */ -->
+
+    <main class="ms-welcome__main">
         <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what My Office Add-in can do for you today! </h2>
         <ul class="ms-List ms-welcome__features ms-u-slideUpIn10">
             <li class="ms-ListItem">
@@ -58,61 +58,97 @@
         </ul>
         <br />
         <br />
-        <p class="ms-font-l">Modify the source files, then click <b>Run</b>.</p>
+        <p class="ms-font-l">Modify the source files, then click
+            <b>Run</b>.</p>
         <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
             <span class="ms-Button-label">Run</span>
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--ChevronRight"></i></span>
+            <span class="ms-Button-icon">
+                <i class="ms-Icon ms-Icon--ChevronRight"></i>
+            </span>
         </button>
         <button class="ms-Button ms-Button--primary" id="action-button">
-            <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+            <span class="ms-Button-icon">
+                <i class="ms-Icon ms-Icon--plus"></i>
+            </span>
             <span class="ms-Button-label" id="button-text"></span>
             <span class="ms-Button-description" id="button-desc"></span>
         </button>
     </main>
-        
-    <div class="ms-Dialog">
-        <div class="ms-Dialog-title">All emails together</div>
+
+    <div class="docs-DialogExample-multiline">
+        <!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. -->
+        <div class="ms-Dialog ms-Dialog--multiline">
+            <div class="ms-Dialog-title">All emails together</div>
             <div class="ms-Dialog-content">
-                <p class="ms-Dialog-subText">Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.</p>
-                <div class="ms-CheckBox">
-                    <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
-                    <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
-                    <span class="ms-Label">Option1</span> 
-                    </label>
-                </div>
-                <div class="ms-CheckBox">
-                    <input tabindex="-1" type="checkbox" class="ms-CheckBox-input">
-                    <label role="checkbox" class="ms-CheckBox-field" tabindex="0" aria-checked="false" name="checkboxa">
-                    <span class="ms-Label">Option2</span> 
-                    </label>
-                </div>
-            </div>
-            <div class="ms-Dialog ms-Dialog--close ms-Dialog--multiline">
-                <button class="ms-Button ms-Dialog-action ms-Button--primary">
-                    <span class="ms-Button-label">Save</span> 
+                <!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. -->
+                <button class="ms-Button ms-Dialog-action ms-Button--compound">
+                    <span class="ms-Button-icon">
+                        <i class="ms-Icon ms-Icon--Add"></i>
+                    </span>
+                    <span class="ms-Button-label">Create Account</span>
+                    <span class="ms-Button-description">Description of this action this button takes</span>
                 </button>
-                <button class="ms-Button ms-Dialog-action">
-                    <span class="ms-Button-label">Cancel</span> 
+                <!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. -->
+                <button class="ms-Button ms-Dialog-action ms-Button--compound">
+                    <span class="ms-Button-icon">
+                        <i class="ms-Icon ms-Icon--Add"></i>
+                    </span>
+                    <span class="ms-Button-label">Sign in</span>
+                    <span class="ms-Button-description">Description of this action this button takes</span>
+                </button>
+                <!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE in the project root for license information. -->
+                <button class="ms-Button ms-Dialog-action ms-Button--compound">
+                    <span class="ms-Button-icon">
+                        <i class="ms-Icon ms-Icon--Add"></i>
+                    </span>
+                    <span class="ms-Button-label">Settings</span>
+                    <span class="ms-Button-description">Description of this action this button takes</span>
                 </button>
             </div>
         </div>
+        <button class="ms-Button docs-DialogExample-button">Open Dialog</button>
+        <label class="docs-DialogExample-label">Create Account clicked</label>
     </div>
 
 
     <script type="text/javascript" src="assets/js/core.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"
-                                            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                                            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
     <script type="text/javascript">
-        var DialogElements = document.querySelectorAll(".ms-Dialog");
-        var DialogComponents = [];
-        for (var i = 0; i < DialogElements.length; i++) {
-            (function() {
-            DialogComponents[i] = new fabric['Dialog'](DialogElements[i]);
-            }());
-        }
-</script>
+        (function () {
+            var example = document.querySelector(".docs-DialogExample-multiline");
+            var button = example.querySelector(".docs-DialogExample-button");
+            var dialog = example.querySelector(".ms-Dialog");
+            var label = example.querySelector(".docs-DialogExample-label")
+
+            var actionButtonElements = example.querySelectorAll(".ms-Dialog-action");
+            var actionButtonComponents = [];
+
+            // Wire up the dialog
+            var dialogComponent = new fabric['Dialog'](dialog);
+
+            // Wire up the buttons
+            for (var i = 0; i < actionButtonElements.length; i++) {
+                actionButtonComponents[i] = new fabric['Button'](actionButtonElements[i], actionHandler);
+            }
+
+            // When clicking the button, open the dialog
+            button.onclick = function () {
+                openDialog(dialog);
+            };
+
+            function actionHandler(event) {
+                label.innerText = this.querySelector(".ms-Button-label").innerText.trim() + " clicked";
+            }
+
+            function openDialog(dialog) {
+                // Open the dialog
+                dialogComponent.open();
+            }
+        }());
+    </script>
     <!-- Resource file for localized strings:                                                          -->
     <!--<script type="text/javascript" src="../UIStrings.js" ></script> -->
 

@@ -12,10 +12,9 @@
     $(document).ready(function () {
       $('#button-text').text("Open Dialog");
       $('#button-desc').text("Open Dialog that shows the workplan");
-      $('#action-button').click(openDialogAsIframe)
+      $('#action-button').click(run)
     })
   }
-
 
   // The initialize function must be run each time a new page is loaded
   Office.initialize = function (reason) {
@@ -50,34 +49,29 @@
 
       $('#button-text').text("Open Dialog");
       $('#button-desc').text("Open Dialog that shows the workplan");
-      $('#action-button').click(openDialogAsIframe)
+      $('#action-button').click(openDialogAsIframe);
 
       $('#run').click(run);
     });
   };
 
-  // var dialog;
-  // // Display notifications in message banner at the top of the task pane.
-  // function showNotification(content) {
-  //   $("#notificationBody").text(content);
-  //   messageBanner.showBanner();
-  //   messageBanner.toggleExpansion();
-  // }
+  
 
   function run() {
+    console.log("run was called");
 
 
+    $(".ms-dialog").open();
     /**
      * Insert your Outlook code here
      */
 
   }
 
-
-  function openDialogAsIframe() {
+  function openDialogAsIframe(data) {
     //IMPORTANT: IFrame mode only works in Online (Web) clients. Desktop clients (Windows, IOS, Mac) always display as a pop-up inside of Office apps. 
-    //listTasks()
-    if (typeof Office.context !== 'undefined') {
+
+    if (typeof Office.context.ui !== 'undefined') {
       Office.context.ui.displayDialogAsync("https://bnsworkplan.win/dialog", {
         height: 100,
         width: 100,
