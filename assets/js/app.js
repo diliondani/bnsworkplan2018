@@ -78,7 +78,7 @@
     //IMPORTANT: IFrame mode only works in Online (Web) clients. Desktop clients (Windows, IOS, Mac) always display as a pop-up inside of Office apps. 
     //listTasks()
     if (typeof Office.context === 'undefined') {
-      Office.context.ui.displayDialogAsync("https://bnsworkplan.win/assets/html/Dialog.html", {
+      Office.context.ui.displayDialogAsync("https://bnsworkplan.win/dialog", {
         height: 100,
         width: 100,
         displayInIframe: true
