@@ -42,38 +42,56 @@
     {{template "nav"}}
 
     <main class="ms-welcome__main">
-        <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what My Office Add-in can do for you today! </h2>
-        <ul class="ms-List ms-welcome__features ms-u-slideUpIn10">
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Ribbon"></i>
-                <span class="ms-font-m ms-fontColor-neutralPrimary">Achieve more with Office integration</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Unlock"></i>
-                <span class="ms-font-m ms-fontColor-neutralPrimary">Unlock features and functionality</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Design"></i>
-                <span class="ms-font-m ms-fontColor-neutralPrimary">Create and visualize like a pro</span>
-            </li>
-        </ul>
-        <br />
-        <br />
-        <p class="ms-font-l">Modify the source files, then click
-            <b>Run</b>.</p>
-        <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
-            <span class="ms-Button-label">Run</span>
-            <span class="ms-Button-icon">
-                <i class="ms-Icon ms-Icon--ChevronRight"></i>
-            </span>
-        </button>
-        <button class="ms-Button ms-Button--primary" id="action-button">
-            <span class="ms-Button-icon">
-                <i class="ms-Icon ms-Icon--plus"></i>
-            </span>
-            <span class="ms-Button-label" id="button-text"></span>
-            <span class="ms-Button-description" id="button-desc"></span>
-        </button>
+        
+            <section class="HomeContent content">
+                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what My Office Add-in can do for you today! </h2>
+                <ul class="ms-List ms-welcome__features ms-u-slideUpIn10">
+                    <li class="ms-ListItem">
+                        <i class="ms-Icon ms-Icon--Ribbon"></i>
+                        <span class="ms-font-m ms-fontColor-neutralPrimary">Achieve more with Office integration</span>
+                    </li>
+                    <li class="ms-ListItem">
+                        <i class="ms-Icon ms-Icon--Unlock"></i>
+                        <span class="ms-font-m ms-fontColor-neutralPrimary">Unlock features and functionality</span>
+                    </li>
+                    <li class="ms-ListItem">
+                        <i class="ms-Icon ms-Icon--Design"></i>
+                        <span class="ms-font-m ms-fontColor-neutralPrimary">Create and visualize like a pro</span>
+                    </li>
+                </ul>
+                <br />
+                <br />
+                <p class="ms-font-l">Modify the source files, then click
+                    <b>Run</b>.</p>
+                <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+                    <span class="ms-Button-label">Run</span>
+                    <span class="ms-Button-icon">
+                        <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                    </span>
+                </button>
+                <button class="ms-Button ms-Button--primary" id="action-button">
+                    <span class="ms-Button-icon">
+                        <i class="ms-Icon ms-Icon--plus"></i>
+                    </span>
+                    <span class="ms-Button-label" id="button-text"></span>
+                    <span class="ms-Button-description" id="button-desc"></span>
+                </button>
+            </section>
+            <section class="ManageContent undisplayed">
+                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is ManageContent</h2>
+            </section>
+            <section class="ShotefContent undisplayed">
+                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is ShotefContent</h2>
+            </section>
+            <section class="NewContent undisplayed">
+                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is NewContent</h2>
+            </section>
+            <section class="EmergencyContent undisplayed">
+                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is EmergencyContent</h2>
+            </section>
+
+        
+
     </main>
 
     <div class="docs-DialogExample-close">
@@ -113,6 +131,7 @@
         <button class="ms-Button docs-DialogExample-button">Open Dialog</button>
         <label class="docs-DialogExample-label"></label>
     </div>
+
 
     <script type="text/javascript" src="assets/js/core.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

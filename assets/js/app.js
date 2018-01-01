@@ -13,6 +13,11 @@
       $('#button-text').text("Open Dialog");
       $('#button-desc').text("Open Dialog that shows the workplan");
       $('#action-button').click(run)
+      $('#ManageTab').click(newPage);
+      $('#ShotefTab').click(newPage);
+      $('#NewTab').click(newPage);
+      $('#HomeTab').click(newPage);
+      $('#EmergencyTab').click(newPage);
     })
   }
 
@@ -51,11 +56,17 @@
       $('#button-desc').text("Open Dialog that shows the workplan");
       $('#action-button').click(openDialogAsIframe);
 
+      $('#ManageTab').click(newPage);
+      $('#ShotefTab').click(newPage);
+      $('#NewTab').click(newPage);
+      $('#HomeTab').click(newPage);
+      $('#EmergencyTab').click(newPage);
+
       $('#run').click(run);
     });
   };
 
-  
+
 
   function run() {
     /**
@@ -77,17 +88,22 @@
     }
 
   }
-  function newPage () {
-    if (this.id === 'DateTab') {
-        $('.DateSettings').show().siblings().hide();
+
+  function newPage() {
+    console.log(this.id);
+    
+    if (this.id === 'HomeTab') {
+      $('.HomeContent').show().siblings().hide();
+    } else if (this.id === 'ShotefTab') {
+      $('.ShotefContent').show().siblings().hide();
+    } else if (this.id === 'NewTab') {
+      $('.NewContent').show().siblings().hide();
+    } else if (this.id === 'EmergencyTab') {
+      $('.EmergencyContent').show().siblings().hide();
+    } else if (this.id === 'ManageTab') {
+      $('.ManageContent').show().siblings().hide();
     }
-    else if (this.id === 'TableTab') {
-        $('.TableSettings').show().siblings().hide();
-    }
-    else {
-        $('.ChartSettings').show().siblings().hide();
-    }
-};
+  };
 
 
 })();
