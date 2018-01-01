@@ -58,13 +58,10 @@
   
 
   function run() {
-    console.log("run was called");
-
-
-    $(".ms-dialog").open();
     /**
      * Insert your Outlook code here
      */
+    window.open();
 
   }
 
