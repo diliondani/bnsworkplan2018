@@ -77,6 +77,17 @@
     }
 
   }
+  function newPage () {
+    if (this.id === 'DateTab') {
+        $('.DateSettings').show().siblings().hide();
+    }
+    else if (this.id === 'TableTab') {
+        $('.TableSettings').show().siblings().hide();
+    }
+    else {
+        $('.ChartSettings').show().siblings().hide();
+    }
+};
 
 
 })();
