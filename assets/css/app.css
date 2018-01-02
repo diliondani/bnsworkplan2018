@@ -73,7 +73,7 @@ h6 {
         -webkit-align-items: center;
         align-items: center;
         -webkit-flex: 1 0 0;
-        flex: 1 0 0;
+        flex: 1 0 0%;
         padding: 30px 20px;
 }
 
@@ -87,7 +87,7 @@ h6 {
         -webkit-align-items: center;
         align-items: center;
         -webkit-flex: 1 0 0;
-        flex: 1 0 0;
+        flex: 1 0 0%;
         padding: 30px 20px;
 }
 

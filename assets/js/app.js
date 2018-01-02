@@ -7,72 +7,97 @@
 'use strict';
 
 (function () {
+  var userName = "";
+  var email = "dilion.dani@gmail.com";
   if (typeof Office.context === 'undefined') {
     //code for working outside of office client
-    $(document).ready(function () {
-      $('#button-text').text("Open Dialog");
-      $('#button-desc').text("Open Dialog that shows the workplan");
-      $('#action-button').click(run)
-      $('#ManageTab').click(newPage);
-      $('#ShotefTab').click(newPage);
-      $('#NewTab').click(newPage);
-      $('#HomeTab').click(newPage);
-      $('#EmergencyTab').click(newPage);
-    })
+    //$(document).ready(function () {
+    console.log("there is no office context");
+
+    $('#button-text').text("Open Dialog");
+    $('#button-desc').text("Open Dialog that shows the workplan");
+    $('#run').click(function () {
+      run("shotef")
+    });
+    // document.getElementById('run').addEventListener("click",function() {
+    //   run("shotef");
+    // });
+    $('#ManageTab').click(newPage);
+    $('#ShotefTab').click(newPage);
+    $('#NewTab').click(newPage);
+    $('#HomeTab').click(newPage);
+    $('#EmergencyTab').click(newPage);
+    //});
+  } else {
+    // The initialize function must be run each time a new page is loaded
+    Office.initialize = function (reason) {
+      $(document).ready(function () {
+        // Get the language setting for editing document content.
+        // To test this, uncomment the following line and then comment out the
+        // line that uses Office.context.displayLanguage.
+        // var myLanguage = Office.context.contentLanguage;
+
+        // Get the language setting for UI display in the host application.
+        var myLanguage = Office.context.displayLanguage;
+        userName = Office.context.mailbox.userProfile.displayName;
+        email = Office.context.mailbox.userProfile.emailAddress;
+        var UIText;
+
+        // Get the resource strings that match the language.
+        // Use the UIStrings object from the UIStrings.js file
+        // to get the JSON object with the correct localized strings.
+        UIText = UIStrings.getLocaleStrings(myLanguage);
+
+        // // Initialize the FabricUI notification mechanism and hide it
+        // var element = document.querySelector('.ms-MessageBanner');
+        // messageBanner = new app.notification.MessageBanner(element);
+        // messageBanner.hideBanner();
+
+        // Set localized text for UI elements.
+        $("h1").text(userName + " " + UIText.Greeting);
+        $("#about").text(UIText.Introduction);
+
+        // Initialize fabric components
+        //$('.ms-ContextualMenu').ContextualMenu();
+
+        $('#button-text').text("Open Dialog");
+        $('#button-desc').text("Open Dialog that shows the workplan");
+        $('#action-button').click(openDialogAsIframe);
+
+        $('#ManageTab').click(newPage);
+        $('#ShotefTab').click(newPage);
+        $('#NewTab').click(newPage);
+        $('#HomeTab').click(newPage);
+        $('#EmergencyTab').click(newPage);
+
+        $('#run').click(run);
+      });
+    };
+
+
   }
 
-  // The initialize function must be run each time a new page is loaded
-  Office.initialize = function (reason) {
-    $(document).ready(function () {
-      // Get the language setting for editing document content.
-      // To test this, uncomment the following line and then comment out the
-      // line that uses Office.context.displayLanguage.
-      // var myLanguage = Office.context.contentLanguage;
-
-      // Get the language setting for UI display in the host application.
-      var myLanguage = Office.context.displayLanguage;
-      var userName = Office.context.mailbox.userProfile.displayName;
-      //var email = Office.context.mailbox.userProfile.emailAddress;
-      var UIText;
-
-      // Get the resource strings that match the language.
-      // Use the UIStrings object from the UIStrings.js file
-      // to get the JSON object with the correct localized strings.
-      UIText = UIStrings.getLocaleStrings(myLanguage);
-
-      // // Initialize the FabricUI notification mechanism and hide it
-      // var element = document.querySelector('.ms-MessageBanner');
-      // messageBanner = new app.notification.MessageBanner(element);
-      // messageBanner.hideBanner();
-
-      // Set localized text for UI elements.
-      $("h1").text(userName + " " + UIText.Greeting);
-      $("#about").text(UIText.Introduction);
-
-      // Initialize fabric components
-      //$('.ms-ContextualMenu').ContextualMenu();
-
-      $('#button-text').text("Open Dialog");
-      $('#button-desc').text("Open Dialog that shows the workplan");
-      $('#action-button').click(openDialogAsIframe);
-
-      $('#ManageTab').click(newPage);
-      $('#ShotefTab').click(newPage);
-      $('#NewTab').click(newPage);
-      $('#HomeTab').click(newPage);
-      $('#EmergencyTab').click(newPage);
-
-      $('#run').click(run);
-    });
-  };
 
 
-
-  function run() {
+  function run(subject) {
     /**
      * Insert your Outlook code here
      */
-    window.open();
+    $.ajax({
+      url: "http://localhost:8080/gettasks",
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        email: email,
+        subject: subject
+      }
+
+    }).done(function (res) {
+      console.log(res);
+    }).fail(function (error) {
+      console.log(error);
+    });
+    //window.open();
 
   }
 
@@ -90,8 +115,6 @@
   }
 
   function newPage() {
-    console.log(this.id);
-    
     if (this.id === 'HomeTab') {
       $('.HomeContent').show().siblings().hide();
     } else if (this.id === 'ShotefTab') {
@@ -103,7 +126,7 @@
     } else if (this.id === 'ManageTab') {
       $('.ManageContent').show().siblings().hide();
     }
-  };
+  }
 
 
 })();

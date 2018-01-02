@@ -61,6 +61,9 @@
                 </ul>
                 <br />
                 <br />
+                {{if .}}
+                <h3>{{.}}</h3>
+                {{end}}
                 <p class="ms-font-l">Modify the source files, then click
                     <b>Run</b>.</p>
                 <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
@@ -138,7 +141,7 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         (function () {
             var example = document.querySelector(".docs-DialogExample-close");
             var button = example.querySelector(".docs-DialogExample-button");
@@ -186,7 +189,7 @@
                 dialogComponent.open();
             }
         }());
-    </script>
+    </script> -->
     <!-- Resource file for localized strings:                                                          -->
     <!--<script type="text/javascript" src="../UIStrings.js" ></script> -->
 
