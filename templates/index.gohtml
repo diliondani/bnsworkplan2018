@@ -42,58 +42,139 @@
     {{template "nav"}}
 
     <main class="ms-welcome__main">
-        
-            <section class="HomeContent content">
-                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what My Office Add-in can do for you today! </h2>
-                <ul class="ms-List ms-welcome__features ms-u-slideUpIn10">
-                    <li class="ms-ListItem">
-                        <i class="ms-Icon ms-Icon--Ribbon"></i>
-                        <span class="ms-font-m ms-fontColor-neutralPrimary">Achieve more with Office integration</span>
-                    </li>
-                    <li class="ms-ListItem">
-                        <i class="ms-Icon ms-Icon--Unlock"></i>
-                        <span class="ms-font-m ms-fontColor-neutralPrimary">Unlock features and functionality</span>
-                    </li>
-                    <li class="ms-ListItem">
-                        <i class="ms-Icon ms-Icon--Design"></i>
-                        <span class="ms-font-m ms-fontColor-neutralPrimary">Create and visualize like a pro</span>
-                    </li>
-                </ul>
-                <br />
-                <br />
-                {{if .}}
-                <h3>{{.}}</h3>
-                {{end}}
-                <p class="ms-font-l">Modify the source files, then click
-                    <b>Run</b>.</p>
-                <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
-                    <span class="ms-Button-label">Run</span>
-                    <span class="ms-Button-icon">
-                        <i class="ms-Icon ms-Icon--ChevronRight"></i>
-                    </span>
-                </button>
-                <button class="ms-Button ms-Button--primary" id="action-button">
-                    <span class="ms-Button-icon">
-                        <i class="ms-Icon ms-Icon--plus"></i>
-                    </span>
-                    <span class="ms-Button-label" id="button-text"></span>
-                    <span class="ms-Button-description" id="button-desc"></span>
-                </button>
-            </section>
-            <section class="ManageContent undisplayed">
-                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is ManageContent</h2>
-            </section>
-            <section class="ShotefContent undisplayed">
-                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is ShotefContent</h2>
-            </section>
-            <section class="NewContent undisplayed">
-                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is NewContent</h2>
-            </section>
-            <section class="EmergencyContent undisplayed">
-                <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is EmergencyContent</h2>
-            </section>
 
-        
+        <section class="HomeContent content">
+            <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20"> Discover what My Office Add-in can do for you today! </h2>
+            <ul class="ms-List ms-welcome__features ms-u-slideUpIn10">
+                <li class="ms-ListItem">
+                    <i class="ms-Icon ms-Icon--Ribbon"></i>
+                    <span class="ms-font-m ms-fontColor-neutralPrimary">Achieve more with Office integration</span>
+                </li>
+                <li class="ms-ListItem">
+                    <i class="ms-Icon ms-Icon--Unlock"></i>
+                    <span class="ms-font-m ms-fontColor-neutralPrimary">Unlock features and functionality</span>
+                </li>
+                <li class="ms-ListItem">
+                    <i class="ms-Icon ms-Icon--Design"></i>
+                    <span class="ms-font-m ms-fontColor-neutralPrimary">Create and visualize like a pro</span>
+                </li>
+            </ul>
+            <br />
+            <br />
+            <p class="ms-font-l">Modify the source files, then click
+                <b>Run</b>.</p>
+            <button id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-u-slideUpIn20">
+                <span class="ms-Button-label">Run</span>
+                <span class="ms-Button-icon">
+                    <i class="ms-Icon ms-Icon--ChevronRight"></i>
+                </span>
+            </button>
+            <button class="ms-Button ms-Button--primary" id="action-button">
+                <span class="ms-Button-icon">
+                    <i class="ms-Icon ms-Icon--plus"></i>
+                </span>
+                <span class="ms-Button-label" id="button-text"></span>
+                <span class="ms-Button-description" id="button-desc"></span>
+            </button>
+        </section>
+        <section class="ManageContent undisplayed">
+            <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is ManageContent</h2>
+            <div class="Rtable Rtable--4cols">
+
+                <div class="Rtable-cell">
+                    <h3>Eddard Stark</h3>
+                </div>
+                <div class="Rtable-cell">Has a sword named Ice</div>
+                <div class="Rtable-cell">No direwolf</div>
+                <div class="Rtable-cell">
+                    <strong>Lord of Winterfell</strong>
+                </div>
+
+                <div class="Rtable-cell">
+                    <h3>Jon Snow</h3>
+                </div>
+                <div class="Rtable-cell">Has a sword named Longclaw</div>
+                <div class="Rtable-cell">Direwolf: Ghost</div>
+                <div class="Rtable-cell">
+                    <strong>Knows nothing</strong>
+                </div>
+
+                <div class="Rtable-cell">
+                    <h3>Arya Stark</h3>
+                </div>
+                <div class="Rtable-cell">Has a sword named Needle</div>
+                <div class="Rtable-cell">Direwolf: Nymeria</div>
+                <div class="Rtable-cell">
+                    <strong>No one</strong>
+                </div>
+
+            </div>
+        </section>
+        <section class="ShotefContent undisplayed">
+            <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is ShotefContent</h2>
+            <table class="ms-Table">
+                <thead>
+                  <tr>
+                    <th>Location</th>
+                    <th>Modified</th>
+                    <th>Type</th>
+                    <th>File Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Modified</td>
+                    <td>Type</td>
+                    <td>File Name</td>
+                  </tr>
+                </tbody>
+              </table>
+        </section>
+        <section class="NewContent undisplayed">
+            <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is NewContent</h2>
+        </section>
+        <section class="EmergencyContent undisplayed">
+            <h2 class="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">this is EmergencyContent</h2>
+        </section>
+
+
 
     </main>
 
@@ -141,6 +222,12 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+    <script type="text/javascript">
+        var TableElements = document.querySelectorAll(".ms-Table");
+        for (var i = 0; i < TableElements.length; i++) {
+          new fabric['Table'](TableElements[i]);
+        }
+      </script>
     <!-- <script type="text/javascript">
         (function () {
             var example = document.querySelector(".docs-DialogExample-close");

@@ -1,6 +1,6 @@
 indexes:
-- kind: Task
+- kind: Tasks
   ancestor: yes
   properties:
-  - name: Date
+  - name: Number
     direction: desc

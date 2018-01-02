@@ -53,12 +53,13 @@ func init() {
 
 func getTasks(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
+	w.Header().Add("Access-Control-Allow-Origin", "*")
 	// body
 	// bs := make([]byte, r.ContentLength)
 	// r.Body.Read(bs)
 	// body := string(bs)
 	var tasks []*Task
-	q := datastore.NewQuery("Task").Ancestor(tasksKey(c, "mayor_workplan")).Order("Number")
+	q := datastore.NewQuery("Tasks").Ancestor(tasksKey(c, "mayor_workplan")).Order("Number")
 	//email := r.FormValue("email")
 	//subject := r.FormValue("subject")
 	//w.Write()
@@ -203,7 +204,7 @@ func sign(w http.ResponseWriter, r *http.Request) {
 	// is in the same entity group. Queries across the single entity group
 	// will be consistent. However, the write rate to a single entity group
 	// should be limited to ~1/second.
-	key := datastore.NewIncompleteKey(c, "Task", tasksKey(c, "mayor_workplan"))
+	key := datastore.NewIncompleteKey(c, "Tasks", tasksKey(c, "mayor_workplan"))
 	_, err := datastore.Put(c, key, &t)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

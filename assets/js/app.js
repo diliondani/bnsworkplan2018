@@ -84,7 +84,9 @@
      * Insert your Outlook code here
      */
     $.ajax({
-      url: "http://localhost:8080/gettasks",
+      // url: "http://localhost:8080/gettasks",
+      url: "https://bns-workplan-2018.appspot.com/gettasks",
+      headers: {  'X-Appengine-Inbound-Appid': 'bns-workpaln-2018'  },
       method: 'POST',
       dataType: 'json',
       data: {
