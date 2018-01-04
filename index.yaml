@@ -2,5 +2,8 @@ indexes:
 - kind: Tasks
   ancestor: yes
   properties:
+  - name: Division
+  - name: Number
+    direction: asc
   - name: Number
     direction: desc

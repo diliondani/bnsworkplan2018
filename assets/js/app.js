@@ -3,6 +3,9 @@
  * See LICENSE in the project root for license information.
  */
 /// <reference path="UIStrings.js" />
+// jshint browser:true
+// jshint devel:true
+// jshint jquery:true 
 
 'use strict';
 
@@ -27,6 +30,38 @@
     $('#NewTab').click(newPage);
     $('#HomeTab').click(newPage);
     $('#EmergencyTab').click(newPage);
+    $.ajax({
+      url: $(location).attr('href') + "setcookie",
+      //url: "https://bns-workplan-2018.appspot.com/setcookie",
+      //url: "https://bnsworkplan.win/setcookie",
+      //headers: {  'X-Appengine-Inbound-Appid': 'bns-workpaln-2018'  },
+      method: 'POST',
+      //dataType: 'json',
+      data: {
+        email: email
+      }
+
+    }).done(function (res) {
+      console.log(res);
+    }).fail(function (error) {
+      console.log(error);
+    });
+    $.ajax({
+      url: $(location).attr('href') + "gettasks",
+      //url: "https://bns-workplan-2018.appspot.com/gettasks",
+      //url: "https://bnsworkplan.win/gettasks",
+      //headers: {  'X-Appengine-Inbound-Appid': 'bns-workpaln-2018'  },
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        email: email,
+      }
+
+    }).done(function (res) {
+      console.log(res);
+    }).fail(function (error) {
+      console.log(error);
+    });
     //});
   } else {
     // The initialize function must be run each time a new page is loaded
@@ -79,26 +114,11 @@
 
 
 
-  function run(subject) {
+  function run() {
     /**
      * Insert your Outlook code here
      */
-    $.ajax({
-      // url: "http://localhost:8080/gettasks",
-      url: "https://bns-workplan-2018.appspot.com/gettasks",
-      headers: {  'X-Appengine-Inbound-Appid': 'bns-workpaln-2018'  },
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        email: email,
-        subject: subject
-      }
 
-    }).done(function (res) {
-      console.log(res);
-    }).fail(function (error) {
-      console.log(error);
-    });
     //window.open();
 
   }
